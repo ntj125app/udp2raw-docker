@@ -26,9 +26,9 @@ trap 'abort_handler' SIGINT INT
 
 # run application if no ARGS / CMD
 if [ $# -eq 0 ] && [ "$MODE" == "server" ]; then
-    /udp2raw/udp2raw_amd64 -s -l $LOCALADDR:$LOCALPORT -r $REMOTEADDR:$REMOTEPORT -k $KEY --raw-mode faketcp -a
+    /udp2raw/udp2raw_amd64 -s -l $LOCALADDR:$LOCALPORT -r $REMOTEADDR:$REMOTEPORT -k $KEY --raw-mode faketcp -a --fix-gro
 elif [ $# -eq 0 ] && [ "$MODE" == "client" ]; then
-    /udp2raw/udp2raw_amd64 -c -l $LOCALADDR:$LOCALPORT -r $REMOTEADDR:$REMOTEPORT -k $KEY --raw-mode faketcp -a
+    /udp2raw/udp2raw_amd64 -c -l $LOCALADDR:$LOCALPORT -r $REMOTEADDR:$REMOTEPORT -k $KEY --raw-mode faketcp -a --fix-gro
 else
     exec "$@"
 fi
